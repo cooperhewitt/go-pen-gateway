@@ -16,6 +16,8 @@ rmdeps:
 build:	rmdeps deps bin
 
 deps:
+	@GOPATH=$(shell pwd) go get -u "github.com/davecgh/go-spew/spew"
+	@GOPATH=$(shell pwd) go get -u "github.com/tarm/serial"
 	@GOPATH=$(shell pwd) go get -u "github.com/mikepb/go-serial"
 
 fmt:
@@ -24,3 +26,4 @@ fmt:
 
 bin: 	self fmt
 	@GOPATH=$(GOPATH) go build -o bin/list-ports cmd/list-ports.go
+	@GOPATH=$(GOPATH) go build -o bin/ack cmd/ack.go
