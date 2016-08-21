@@ -13,12 +13,13 @@ func main() {
 		log.Panic(err)
 	}
 
-	log.Printf("Found %d ports:\n", len(ports))
+	log.Printf("Found %d ports. Here are the Smithsonian Gateways\n", len(ports))
 
 	for _, info := range ports {
-		log.Println(info.Name())
-		log.Println("\tName:", info.Name())
-		log.Println("\tDescription:", info.Description())
-		log.Println("\tTransport:", info.Transport())
+		if info.Description() == "Smithsonian Gateway" {
+			log.Println("\tName:", info.Name())
+			log.Println("\tDescription:", info.Description())
+			log.Println("\tTransport:", info.Transport())
+		}
 	}
 }
