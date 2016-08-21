@@ -3,8 +3,8 @@
 Get chatty with the Smithsonian Gateway Board
 
 ```
-2016/08/20 23:12:59 /dev/cu.usbmodem1411
-2016/08/20 23:12:59    Name: /dev/cu.usbmodem1411
-2016/08/20 23:12:59    Description: Smithsonian Gateway
-2016/08/20 23:12:59    Transport: 0
+2016/08/21 00:39:04 Found 2 ports. Here are the Smithsonian Gateways
+2016/08/21 00:39:04    Name: /dev/cu.usbmodem1421
+2016/08/21 00:39:04    Description: Smithsonian Gateway
+2016/08/21 00:39:04    Transport: 0
 ```
