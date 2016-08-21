@@ -13,7 +13,7 @@ func main() {
 		log.Panic(err)
 	}
 
-	log.Printf("Found %d ports. Here are the Smithsonian Gateways\n", len(ports))
+	log.Printf("\tFound %d ports. Here are the Smithsonian Gateways\n", len(ports))
 
 	for _, info := range ports {
 		if info.Description() == "Smithsonian Gateway" {
