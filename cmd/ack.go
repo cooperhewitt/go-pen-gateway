@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/tarm/serial"
+	"github.com/the-pen/go-pen-gateway"
 	"log"
 	"os"
 )
@@ -17,16 +18,14 @@ func main() {
 		log.Fatal(err)
 	}
 
-	const ack_interrupt = "\x55\x55\x00\x00\x00\x00\x00\x00\x00\x00\xff\x00\xff\x00\x00\x00\xff\x00\xff\x00"
-	log.Printf("ACK Interrupt: %x\n", []byte(ack_interrupt))
+	log.Printf("ACK Interrupt: %x\n", []byte(gateway.ACK_INTERRUPT))
 
-	n, err := s.Write([]byte(ack_interrupt))
+	n, err := s.Write([]byte(gateway.ACK_INTERRUPT))
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	const ack_frame = "\x00\xFF\x00\xFF"
-	log.Printf("ACK Frame: %x\n", []byte(ack_frame))
+	log.Printf("ACK Frame: %x\n", []byte(gateway.ACK_FRAME))
 
 	buf := make([]byte, 128)
 	n, err = s.Read(buf)
