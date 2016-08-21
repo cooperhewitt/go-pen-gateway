@@ -16,5 +16,7 @@ $ ./bin/list-ports
 ```
 $ ./bin/ack /dev/cu.usbmodem1421
 
-2016/08/21 10:23:10 "\x00\xff\x01\xff4\xcc"
+ACK Interrupt: 55550000000000000000ff00ff000000ff00ff00
+ACK Frame: 00ff00ff
+ACK Response: 00ff01ff31cf
 ```
