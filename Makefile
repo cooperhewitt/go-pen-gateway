@@ -27,3 +27,4 @@ fmt:
 bin: 	self fmt
 	@GOPATH=$(GOPATH) go build -o bin/list-ports cmd/list-ports.go
 	@GOPATH=$(GOPATH) go build -o bin/ack cmd/ack.go
+	@GOPATH=$(GOPATH) go build -o bin/gateway-id cmd/gateway-id.go

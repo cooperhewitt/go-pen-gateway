@@ -1,6 +1,9 @@
 package gateway
 
-import ()
+import (
+	"github.com/tarm/serial"
+	"log"
+)
 
 const (
 	PN532_START_CODE_1        string = "\x00"
@@ -40,5 +43,59 @@ func GenerateFrame(direction string, command string) []byte {
 	frame = append(frame, length_byte[0], length_checksum_byte[0], []byte(direction)[0], []byte(command)[0], field_checksum_byte[0])
 
 	return frame
+
+}
+
+func SendFrame(frame []byte, port string) []byte {
+
+	c := &serial.Config{Name: port, Baud: 9600}
+	s, err := serial.OpenPort(c)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	n, err := s.Write([]byte(frame))
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Println(n)
+
+	data := Read(c)
+
+	log.Printf("Response: %x\n", data)
+	return data
+
+}
+
+func Read(c *serial.Config) []byte {
+
+	s, err := serial.OpenPort(c)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	data := ""
+
+	sum := 1
+	for sum < 4 {
+
+		buf := make([]byte, 128)
+		n, err := s.Read(buf)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		log.Printf("Response: %x\n", buf[:n])
+
+		data = data + string(buf[:n])
+		sum += sum
+
+	}
+
+	return []byte(data)
 
 }
