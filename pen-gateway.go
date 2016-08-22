@@ -21,18 +21,23 @@ const (
 	P2P_STATUS_SUCCESS        string = "\x00"
 )
 
-func GenerateFrame(direction string, command string) string {
+func GenerateFrame(direction string, command string) []byte {
 
-	frame := PN532_START_CODE_1 + PN532_START_CODE_2
+	frame := []byte(PN532_START_CODE_1 + PN532_START_CODE_2)
 
-	direction_field_length := 1
-	command_field_length := 1
+	direction_length := 1
+	command_length := 1
 
-	length := direction_field_length + command_field_length //+ len(args)
+	length := direction_length + command_length
+	length_byte := []byte(string(length))
+
 	length_checksum := 0xFF & (0x00 - length)
-	fields_checksum := 0xFF & (0x00 - []byte(direction)[0] - []byte(command)[0])
+	length_checksum_byte := []byte(string(length_checksum))
 
-	frame = frame + string(length) + string(length_checksum) + direction + command + string(fields_checksum)
+	field_checksum := 0xFF & (0x00 - []byte(direction)[0] - []byte(command)[0])
+	field_checksum_byte := []byte(string(field_checksum))
+
+	frame = append(frame, length_byte[0], length_checksum_byte[0], []byte(direction)[0], []byte(command)[0], field_checksum_byte[0])
 
 	return frame
 
