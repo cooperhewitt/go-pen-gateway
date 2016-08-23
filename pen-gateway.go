@@ -81,3 +81,7 @@ func SendFrame(frame []byte, port string) []byte {
 	return []byte(data)
 
 }
+
+func DecodeD5Response(frame []byte) string {
+	return string(frame[6:])
+}
