@@ -15,9 +15,11 @@ func main() {
 	frame := gateway.GenerateFrame(gateway.HOST_TO_GATEWAY, gateway.REQUEST_GATEWAY_ID)
 	log.Printf("Sending REQUEST_GATEWAY_ID - %x\n", frame)
 
+	// send the frame to the board
 	rsp := gateway.SendFrame(frame, port)
 	log.Printf("Received - %x\n", rsp)
 
+	// decode the response 
 	id := gateway.DecodeD5Response(rsp)
 	log.Printf("Gateway ID: %s\n", id)
 
