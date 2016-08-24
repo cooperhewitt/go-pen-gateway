@@ -19,7 +19,7 @@ func main() {
 	rsp := gateway.SendFrame(frame, port)
 	log.Printf("Received - %x\n", rsp)
 
-	// decode the response 
+	// decode the response
 	id := gateway.DecodeD5Response(rsp)
 	log.Printf("Gateway ID: %s\n", id)
 

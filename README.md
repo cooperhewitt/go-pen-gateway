@@ -30,3 +30,22 @@ $ ./bin/gateway-id /dev/cu.usbmodem1411
 2016/08/23 15:23:14 Received - 00ff12eed5a74230434539383436314230303037303015
 2016/08/23 15:23:14 Gateway ID: B0CE98461B000700
 ```
+
+```
+$ ./bin/gateway-server /dev/cu.usbmodem1411
+2016/08/24 09:49:30 Sending REQUEST_GATEWAY_ID - 00ff02fed4a686
+2016/08/24 09:49:30 Reading Response: 00ff00ff
+2016/08/24 09:49:30 Reading Response: 00ff12eed5a74230434539383436314230303037303015
+2016/08/24 09:49:30 Response: 00ff12eed5a74230434539383436314230303037303015
+2016/08/24 09:49:30 Received - 00ff12eed5a74230434539383436314230303037303015
+2016/08/24 09:49:30 Gateway ID: B0CE98461B000700
+
+$ curl http://localhost:8080/ | python -mjson.tool
+
+[
+    {
+        "name": "Gateway ID: B0CE98461B000700\u0015",
+        "timestamp": "2016-08-24T09:49:49.377042064-04:00"
+    }
+]
+```
